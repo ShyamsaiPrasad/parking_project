@@ -1,0 +1,73 @@
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>login page</title>
+	<!-- CSS CDN -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<!-- JS CDN -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+	<!-- bootstrap icon cdn -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+	<style type="text/css">
+		form{
+			border-radius: 5px;
+			justify-content: center;
+		}
+		.hr{
+			font-weight: 10px;
+		}
+	</style>
+
+
+</head>
+
+<body class="bg-black">
+	<!-- nav bar -->
+
+<!-- As a heading -->
+		<nav class="navbar">
+		  <div class="container">
+		    <span class="navbar-brand mb-0 h1" style="color: white;">
+		    	 <span class="text-primary"><i class="bi bi-car-front-fill"></i> S</span>imple Parking Management System</span>
+
+
+
+		  </div>
+
+		</nav>
+		<div class="hr"><hr></div>
+
+
+		<br>
+		<br>
+
+
+	<form style="background-color:white; margin-right: 500px; margin-left: 500px; margin-top:40px;" method= "POST">
+		{% csrf_token %}
+			<br>
+		<center><label><i class="bi bi-arrow-right-square text-primary"></i> ADMIN LOGIN</label></center>
+		<div style="margin-left: 20px; margin-right: 20px;">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">User Name:</label>
+    <input type="text" class="form-control" name="user">
+    <div id="emailHelp" class="form-text"></div>
+  </div>
+  <div class="mb-3" >
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" name="pass">
+  </div>
+
+  <input type="submit" value="Login" class="btn btn-primary form-control">
+
+  </div>
+  <br>
+</form>
+
+</body>
+</html>
+{% endblock %}

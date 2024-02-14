@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- nav bar -->
+              <div class="card mt-3 ms-3" style="width:75rem;">
+
+                <div class="card-header">
+                  <span class="navbar-brand mb-0 h8" style="padding-left:10px"><i class="fa-solid fa-magnifying-glass"></i> Search data | Only the records of last 30 days are available here</span>
+                </div>
+                    <form style="margin-top: 90px; margin-left:160px;margin-right:58px;margin-botttom:10px;" class="col-md-8">
+                          <div class="d-flex flex-row">
+                           <input type="search" class="form-control" name="search">
+                           <button class="bg-info" type="submit"><i class="bi bi-search"></i></button>
+                          </div>
+                    </form>
+                <!-- <div class="card-body card ms-3 me-3" style="margin-top:60px;"> -->
+                  <div class="container">
+                    <div class="row col-md-11">
+
+
+                      <table class="table table-striped table-bordered" style="margin-left:30px;margin-top:90px;">
+
+                                <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>Vehicle number</th>
+                                  <th>Type</th>
+                                  <th>Area NO</th>
+                                  <th>Charge</th>
+                                  <th>Arrival Time</th>
+                                  <th>Status</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              {% for i in vehicles %}
+                              <tr>
+
+                                      <td>{{ i.id }}</td>
+                                      <td>{{ i.vehicle_no }}</td>
+                                      <td>{{ i.vehicle_type }}</td>
+                                      <td>{{ i.parking_area_number }}</td>
+                                      <td><span class="text-warning">$&nbsp;</span>{{ i.parking_charge }}</td>
+                                      <td>{{ i.arrival_time }}</td>
+                                      <td>
+                                          {% if i.status == "parked" %}
+                                               <span class="rounded-pill btn btn-success">{{ i.status }}</span>
+                                          {% else %}
+                                               <span class="rounded-pill btn btn-danger">{{ i.status }}</span>
+                                          {% endif %}
+                                      </td>
+
+                              </tr>
+                              {% endfor %}
+
+
+
+
+                              </tbody>
+                      </table>
+
+                  </div>
+                </div>
+              </div>
+{% endblock %}

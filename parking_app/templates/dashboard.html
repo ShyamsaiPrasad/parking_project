@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- sidebar close -->
+            <div class="container mt-5">
+            <div class="row me-5">
+              <div class="col-sm-4 mb-3 mb-sm-0">
+                <div class="card">
+                  <div class="card-body bg-info">
+                    <i class="fa-solid fa-p float-end pt-3 pe-5 fa-2x text-light"></i>
+                    <h5 class="card-title text-light">{{ parked }}</h5>
+                    <p class="card-text text-light">vehicles parked</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body bg-dark">
+                    <i class="fa-solid fa-car fa-2x float-end pt-3 pe-5 text-light"></i>
+                    <h5 class="card-title text-light">{{ departed }}</h5>
+                    <p class="card-text text-light">Departed vehicles</p>
+
+                  </div>
+                </div>
+              </div>
+                <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body bg-danger">
+                    <i class="fa-solid fa-box fa-2x float-end pt-3 pe-5 text-light"></i>
+                    <h5 class="card-title text-light">{{ tot_cate }}</h5>
+                    <p class="card-text text-light">Available Category</p>
+
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 mt-4">
+                <div class="card">
+                  <div class="card-body bg-warning">
+                    <i class="fa-solid fa-money-check-dollar fa-2x float-end pt-3 pe-5 text-light"></i>
+                    <h5 class="card-title text-light">$ {{ tot_earnings }}</h5>
+                    <p class="card-text text-light">Total Earnings</p>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 mt-4">
+                <div class="card">
+                  <div class="card-body bg-secondary">
+                    <i class="fa-brands fa-buffer fa-2x float-end pt-3 pe-5 text-light"></i>
+                    <h5 class="card-title text-light">{{ t_records }}</h5>
+                    <p class="card-text text-light">Total Records</p>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 mt-4">
+                <div class="card">
+                  <div class="card-body bg-primary">
+                    <i class="fa-solid fa-check-double fa-2x float-end pt-3 pe-5 text-light"></i>
+                    <h5 class="card-title text-light">{{ t_v_limit }}</h5>
+                    <p class="card-text text-light">Total parking slots</p>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+{% endblock %}

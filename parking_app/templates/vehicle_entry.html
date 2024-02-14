@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container ms-1" style="margin-bottom:20px;">
+      <div class="row g-0 d-flex flex-row">
+
+        <div class="col-6 border border-2 border-light-subtle" style="border-radius:5px; margin-top:30px; margin-right:20px; margin-left:10px">
+              <div class="card-header">&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-list" style="color:greenyellow;"></i>&nbsp;&nbsp;Add Vehicle</div><hr>
+
+
+
+                <form class="row g-3" style="margin-top: 2px; margin-left: 5px; margin-right:5px; margin-bottom: 2px;" method="POST">
+                    {% csrf_token %}
+
+                    <div class="col-6">
+                           <label for="inputEmail4" class="form-label">
+                               Vehicle Number</label>
+                               <input type="text" class="form-control" name="vehicle_number">
+
+                    </div>
+
+                    <div class="col-6">
+                      <label for="inputPassword4" class="form-label">
+                        Vehicle Type</label>
+                              <select name="type" class="form-select">
+                                    <option selected>select the vehicle type</option>
+                                    {% for i in vehicle_type %}
+                                            <option name="{{ i }}">{{ i }}</option>
+                                    {% endfor %}
+
+                              </select>
+
+                    </div>
+
+                    <div class="col-12">
+                      <label for="inputAddress" class="form-label">
+                        Parking area number</label>
+                          <select name="parking_area_number" class="form-select">
+                                  <option selected>Select Parking Area Number</option>
+                                  {% for i in categoryy %}
+                                            <option name="{{ i.parking_area_number }}">{{ i.parking_area_number }}</option>
+                                  {% endfor %}
+                          </select>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="inputAddress2" class="form-label">
+                        Parking Charge</label>
+                         <select name="charge" class="form-select">
+                                <option selected>Select Parking Charge</option>
+                                {% for i in parking_charge %}
+                                            <option name="{{ i }}">{{ i }}</option>
+                                {% endfor %}
+                         </select>
+                    </div>
+
+                    <div class="col-12 d-grid gap-1" style="margin-bottom:15px">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+
+                </div>
+                    <!-- details start here -->
+                <div class="card col-4" style="margin-top: 30px; margin-left: 10px; margin-right:20px;">
+                     <h5 class="card-header mb-1">&nbsp;Vehicle Limitations</h5>
+                     <div class="card-body">
+                          <div class="card" style="width: 380px;">
+                             <ul class="list-group list-group-flush">
+                                <li class="list-group-item pt-2">Car Limit:<span class="float-end pt-2"><span class="bg-success text-white p-1" style="border-radius:6px;">17</span>&nbsp;Out&nbsp;of&nbsp;18</span></li>
+                                <li class="list-group-item pt-2">Motorcycle Limit:<span class="float-end pt-2"><span class="bg-success text-white p-1" style="border-radius:6px;">26</span>&nbsp;Out&nbsp;of&nbsp;26</span></li>
+                                <li class="list-group-item pt-2">Mini Van Limit:<span class="float-end pt-2"><span class="bg-success text-white p-1" style="border-radius:6px;">8</span>&nbsp;Out&nbsp;of&nbsp;8</span></li>
+                                <li class="list-group-item pt-2">Pickup Van Limit:<span class="float-end pt-2"><span class="bg-success text-white p-1" style="border-radius:6px;">11</span>&nbsp;Out&nbsp;of&nbsp;11</span></li>
+                                <li class="list-group-item pt-2">
+                                  Minibus Limit:<span class="float-end pt-2"><span class="bg-success text-white p-1" style="border-radius:6px;">6</span>&nbsp;Out&nbsp;of&nbsp;6</span></li>
+                                  <li class="list-group-item pt-2">
+                                  Car Type 101 Limit:<span class="float-end pt-2"><span class="bg-success text-white p-1" style="border-radius:6px;">5</span>&nbsp;Out&nbsp;of&nbsp;5</span></li>
+
+                              </ul>
+                          </div>
+                        </div>
+
+                    </div>
+                       <!-- details end here                -->
+
+
+
+
+
+      </div>
+
+
+
+      <div class="card mt-3 ms-2" style="width:67rem;">
+
+                <div class="card-header">
+                  Current Vehicles
+                </div>
+                    <form style="margin-top: 20px; margin-left:50px;margin-right:58px">
+                        {% csrf_token %}
+                          Show<select aria-label="Default select example">
+                                    <option>10</option>
+                                    <option value="1">20</option>
+                                    <option value="2">30</option>
+                                    <option value="3">40</option>
+                          </select>Entries
+                          <div class="float-end">
+                           <label for="search">Search:</label>
+                           <span><input type="search" name="query"></span>
+                          </div>
+                        </form>
+                <!-- <div class="card-body card ms-3 me-3" style="margin-top:60px;"> -->
+                  <div class="container">
+                    <div class="row col-md-11">
+                        <table id="example" class="table table-striped table-bordered" style="margin-left: 50px;margin-top:15px;">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Vehicle Number</th>
+                    <th>Area Number</th>
+                    <th>Arrival Time</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for i in vehi %}
+                          <tr>
+
+                            <td>{{ i.id }}</td>
+                            <td>{{ i.vehicle_no }}</td>
+                            <td>{{ i.parking_area_number }}</td>
+                            <td>{{ i.arrival_time }}</td>
+                            <td>
+                                {% if i.status == "parked" %}
+                                       <button type="button" class="rounded-pill  btn btn-primary">{{ i.status }}</button>
+                                {% else %}
+                                       <button type="button" class="rounded-pill  btn btn-success">{{ i.status }}</button>
+                                {% endif %}
+                            </td>
+                            <td><button type="button" class="rounded btn"><i class="bi bi-receipt"></i>Receipt</button>
+
+                          </tr>
+                {% endfor %}
+
+
+                </tbody>
+
+              </table>
+
+
+                      <nav aria-label="...">
+                              {% if vehi.has_other_pages %}
+                              <ul class="pagination float-end" style="margin-right:-61px">
+                                {% if vehi.has_previous %}
+                                    <li class="page-item">
+                                        <a href="?pagee={{ vehi.previous_page_number }}" style="text-decoration:none;"><span class="page-link">Previous</span></a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <a href="?pagee={{ vehi.paginator.number_pages }}" class="page-link"  style="text-decoration:none;">Previous</a>
+                                    </li>
+                                {% endif %}
+                                  <!--open number pagination -->
+                                  {% for i in vehi.paginator.page_range %}
+                                           {% if vehi.number == i %}
+                                                   <li class="page-item active"><a href="?pagee={{ i }}" class="page-link">{{ i }}</a></li>
+                                           {% else %}
+                                                    <li class="page-item"><a href="?pagee={{ i }}" class="page-link">{{ i }}</a></li>
+                                           {% endif %}
+                                  {% endfor %}
+
+
+
+                                <!-Here next button is started-->
+                                  {% if vehi.has_next %}
+                                     <li class="page-item">
+                                         <a href="?pagee={{ vehi.next_page_number }}" style="text-decoration:none;"><span class="page-link">next</span></a>
+                                     </li>
+                                  {% else %}
+                                      <li class="page-item disabled">
+                                           <a href="?pagee={{ vehi.paginator.number_pages }}" class="page-link">next</a>
+                                       </li>
+                                  {% endif %}
+                              </ul>
+                          {% endif %}
+                      </nav>
+
+
+
+                    </div>
+
+                  </div>
+
+
+
+
+
+                <!-- </div>  -->
+    </div>
+
+
+  </div>
+
+{% endblock %}
